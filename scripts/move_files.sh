@@ -20,10 +20,10 @@ EXPRESSION=$3
 mkdir -p $DESTINATION_FOLDER
 
 echo "Searching folder $SEARCH_FOLDER and moving MP3s to $DESTINATION_FOLDER"
-find "$SEARCH_FOLDER" -name "$EXPRESSION" -print0 | while read -d $'\0' file
+find "$SEARCH_FOLDER" -name "$EXPRESSION" -print0 | while read -d $'\0' FILE
 do
-  echo "Moving $file"
-  if ! mv "$file" "$DESTINATION_FOLDER"; then
+  echo "Moving $FILE"
+  if ! mv "$FILE" "$DESTINATION_FOLDER"; then
     echo -e "\n Move failed!"
     exit 1
   fi

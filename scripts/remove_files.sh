@@ -17,10 +17,10 @@ EXPRESSION=$2
 
 
 echo "Searching folder $SEARCH_FOLDER for files matching $EXPRESSION"
-find "$SEARCH_FOLDER" -name "$EXPRESSION" -print0 | while read -d $'\0' file
+find "$SEARCH_FOLDER" -name "$EXPRESSION" -print0 | while read -d $'\0' FILE
 do
-  echo "Removing $file"
-  if ! rm "$file"; then
+  echo "Removing $FILE"
+  if ! rm "$FILE"; then
     echo -e "\nRemoval failed!\n"
     exit 1
   fi
