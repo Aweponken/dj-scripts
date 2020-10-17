@@ -17,7 +17,7 @@ EXPRESSION=$2
 
 
 echo "Searching folder $SEARCH_FOLDER for files matching $EXPRESSION"
-find "$SEARCH_FOLDER" -name $EXPRESSION -print0 | while read -d $'\0' file
+find "$SEARCH_FOLDER" -name "$EXPRESSION" -print0 | while read -d $'\0' file
 do
   echo "Removing $file"
   if ! rm "$file"; then
