@@ -20,7 +20,7 @@ EXPRESSION=$3
 mkdir -p $DESTINATION_FOLDER
 
 echo "Searching folder $SEARCH_FOLDER and moving MP3s to $DESTINATION_FOLDER"
-find "$SEARCH_FOLDER" -name "$EXPRESSION" -print0 | while read -d $'\0' FILE
+find "$SEARCH_FOLDER" -not -path '*/\.*' -name "$EXPRESSION" -print0 | while read -d $'\0' FILE
 do
   echo "Moving $FILE"
   if ! mv "$FILE" "$DESTINATION_FOLDER"; then
