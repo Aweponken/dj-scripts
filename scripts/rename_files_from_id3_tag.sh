@@ -26,12 +26,15 @@ PATTERN=$2
 EXPRESSION="*.mp3"
 
 echo "Searching folder $SEARCH_FOLDER"
-find "$SEARCH_FOLDER" -name "$EXPRESSION" -print0 | while read -d $'\0' FILE
+find "$SEARCH_FOLDER" -not -path '*/\.*' -name "$EXPRESSION" -print0 | while read -d $'\0' FILE
 do
   echo "Renaming $FILE"
   DIR_OF_FILE=$(dirname "${FILE}")
-  RAW_NEW_FILE_NAME=$(eyed3 --plugin display --pattern "$PATTERN" "$FILE")
+  RAW_NEW_FILE_NAME=$(eyed3 --plugin display --pattern "$PATTERN" "$FILE") # Create file name based on the pattern
   NEW_FILE_NAME=$(echo "${RAW_NEW_FILE_NAME//\/}") # Remove any slashes in the new file name
+  NEW_FILE_NAME="${NEW_FILE_NAME#"${NEW_FILE_NAME%%[![:space:]]*}"}" # Remove leading whitespace characters
+  NEW_FILE_NAME="${NEW_FILE_NAME%"${NEW_FILE_NAME##*[![:space:]]}"}" # Remove trailing whitespace characters
+
   if ! mv "$FILE" "$DIR_OF_FILE/$NEW_FILE_NAME.mp3"; then
     echo -e "\nRename failed!\n"
     exit 1
