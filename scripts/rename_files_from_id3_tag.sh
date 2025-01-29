@@ -3,7 +3,7 @@
 # This script renames MP3 files to a name that matches a pattern. 
 # The pattern elements can be found here: https://eyed3.readthedocs.io/en/latest/plugins/display_plugin.html#pattern-elements
 # Usage: ./rename_files_from_id3_tag.sh /Users/Me/Music/ "%title%_%artist%"
-# Note: This script requires eyeD3 and grako, which can be install with: pip3 install eyeD3 grako
+# Note: This script requires eyeD3 and grako, which can be install with: pip3 install eyeD3==0.9.6 grako
 # Note2: eyeD3 requires python >= 3.6
 
 # If less than two arguments supplied, display usage message
